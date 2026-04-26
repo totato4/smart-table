@@ -25,10 +25,15 @@ function collectState() {
   const rowsPerPage = parseInt(state.rowsPerPage);
   const page = parseInt(state.page ?? 1);
 
+  const totalFrom = parseFloat(state.totalFrom) || '';
+  const totalTo = parseFloat(state.totalTo) || '';
+
   return {
     ...state,
     rowsPerPage,
     page,
+    totalFrom,
+    totalTo,
   };
 }
 
@@ -58,7 +63,7 @@ const sampleTable = initTable(
 );
 
 // @todo: инициализация
-const applySearching = initSearching('searchField');
+const applySearching = initSearching('search');
 
 const applyFiltering = initFiltering(sampleTable.filter.elements, {
   searchBySeller: indexes.sellers,
