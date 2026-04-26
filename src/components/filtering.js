@@ -29,6 +29,15 @@ export function initFiltering(elements, indexes) {
     }
 
     // @todo: #4.5 — отфильтровать данные используя компаратор
-    return data.filter((row) => compare(row, state));
+    const totalFrom = parseFloat(state.totalFrom);
+    const totalTo = parseFloat(state.totalTo);
+
+    const filterState = { ...state };
+
+    if (!isNaN(totalFrom) || !isNaN(totalTo)) {
+      filterState.total = [totalFrom || '', totalTo || ''];
+    }
+
+    return data.filter((row) => compare(row, filterState));
   };
 }
